@@ -1,3 +1,3 @@
-import "./component_context"
+import './component_context'
 
-import "playbook-ui/dist/playbook-rails.js"
+import 'playbook-ui/dist/playbook-rails.js'

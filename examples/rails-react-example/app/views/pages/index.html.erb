@@ -1,3 +1,69 @@
-<%= react_component("App") %>
 
-<%= pb_rails("button", props: { text: "Button Primary", margin_right: "lg" }) %>
+
+<%# 1st top section - logo - inbox - notifications - profile-pic w/dropdown%>
+<%= fa_icon "flag" %>
+<%= pb_rails("nav", props: {variant: "subtle", orientation: "horizontal"}) do %>
+<%= %>
+<% end %>
+<%# end top section%>
+
+
+<%= pb_rails("section_separator") %>
+
+<%# 2nd top section Navigation %>
+<%= pb_rails("body", props: {margin_left: 'xl', margin_right: 'lg'}) do%>
+<%= pb_rails("nav", props: { orientation: "horizontal", }) do %>
+  <%= pb_rails("nav/item", props: { text: "Dashboard",  active: true  }) %>
+  <%= pb_rails("nav/item", props: { text: "Products", link: "#"}) %>
+  <%= pb_rails("nav/item", props: { text: "In Progress ", link: "#" }) %>
+  <%= pb_rails("nav/item", props: { text: "Settings", link: "#" }) %>
+<% end %>
+<% end %>
+<%# end top section%>
+
+<%= pb_rails("section_separator") %>
+<br/>
+
+<%= pb_rails("body", props: {margin_left: 'xl', margin_right: 'lg'}) do%>
+          <%= pb_rails("caption", props: { text: "DASHBOARD", size: 'xs' }) %>
+          <%= pb_rails("title", props: { text: "Commerce Dashboard", tag: "h3", size: 3, bold: false })%>
+
+ <%= pb_rails("card", props: { padding: "none", border_none: true, margin: "sm" }) do %>
+      <%= pb_rails("flex", props: {vertical: "center", spacing: "between"}) do %>
+        <%= pb_rails("title", props: { text: "Key Performance Indicator", tag: "h4", size: 4, padding: "sm" }) %> 
+        <%= pb_rails("circle_icon_button", props: {
+          variant: "link",
+          icon: "ellipsis-h"
+        }) %>
+      <% end %>
+      <%= pb_rails("section_separator") %>
+<%= pb_rails("layout", props: {full: true, position: "left", size: "sm", collapse: "md", margin_top: "sm"}) do %>
+<%= pb_rails("nav", props: {link: "#"}) do %>
+  <%= pb_rails("nav/item", props: { text: "Revenue", link: "#", active: true  }) %>
+  <%= pb_rails("nav/item", props: { text: "Orders", link: "#" }) %>
+  <%= pb_rails("nav/item", props: { text: "Profit", link: "#"}) %>
+  <%= pb_rails("nav/item", props: { text: "Average Check", link: "#" }) %>
+    <%= pb_rails("nav/item", props: { text: "Canceled", link: "#" }) %>
+      <%= pb_rails("nav/item", props: { text: "Repeat Sales", link: "#" }) %>
+<% end %>
+
+  
+  <%= pb_rails("layout/body") do %> 
+   <% data2 = [{
+        name: 'Installation',
+        data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]
+    }, ] %>
+   <%= pb_rails("line_graph", props: { id: "line-test", gradient: false, chart_data: data2, point_start: 1,  }  ) %>
+  <% end %>
+  
+<% end %>
+      <% end %>
+  
+<% end%>
+
+
+
+ <%#=  react_component("App") %>
+
+
+<%# <%= pb_rails("button", props: { text: "Button Primary", margin_right: "lg" }) %> 
