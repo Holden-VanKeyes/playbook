@@ -68,6 +68,7 @@ GEM
       tzinfo (~> 2.0)
     addressable (2.8.6)
       public_suffix (>= 2.0.2, < 6.0)
+    ast (2.4.2)
     babel-source (5.8.35)
     babel-transpiler (0.7.0)
       babel-source (>= 4.0, < 6)
@@ -96,8 +97,8 @@ GEM
     erubi (1.12.0)
     execjs (2.9.1)
     ffi (1.16.3)
-    font-awesome-rails (4.7.0.8)
-      railties (>= 3.2, < 8.0)
+    font-awesome-sass (6.2.1)
+      sassc (~> 2.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
     i18n (1.14.4)
@@ -113,6 +114,8 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
+    json (2.7.2)
+    language_server-protocol (3.17.0.3)
     loofah (2.22.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -143,6 +146,10 @@ GEM
       racc (~> 1.4)
     nokogiri (1.16.3-x86_64-linux)
       racc (~> 1.4)
+    parallel (1.24.0)
+    parser (3.3.1.0)
+      ast (~> 2.4.1)
+      racc
     playbook_ui (13.27.0)
       actionpack (>= 5.2.4.5)
       actionview (>= 5.2.4.5)
@@ -189,6 +196,7 @@ GEM
       rake (>= 12.2)
       thor (~> 1.0)
       zeitwerk (~> 2.5)
+    rainbow (3.1.1)
     rake (13.1.0)
     rdoc (6.6.3.1)
       psych (>= 4.0.0)
@@ -202,6 +210,23 @@ GEM
     reline (0.5.0)
       io-console (~> 0.5)
     rexml (3.2.6)
+    rubocop (1.64.0)
+      json (~> 2.3)
+      language_server-protocol (>= 3.17.0)
+      parallel (~> 1.10)
+      parser (>= 3.3.0.2)
+      rainbow (>= 2.2.2, < 4.0)
+      regexp_parser (>= 1.8, < 3.0)
+      rexml (>= 3.2.5, < 4.0)
+      rubocop-ast (>= 1.31.1, < 2.0)
+      ruby-progressbar (~> 1.7)
+      unicode-display_width (>= 2.4.0, < 3.0)
+    rubocop-ast (1.31.3)
+      parser (>= 3.3.1.0)
+    rubocop-performance (1.21.0)
+      rubocop (>= 1.48.1, < 2.0)
+      rubocop-ast (>= 1.31.1, < 2.0)
+    ruby-progressbar (1.13.0)
     rubyzip (2.3.2)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
@@ -241,6 +266,7 @@ GEM
       railties (>= 6.0.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    unicode-display_width (2.5.0)
     view_component (2.55.0)
       activesupport (>= 5.0.0, < 8.0)
       method_source (~> 1.0)
@@ -278,13 +304,15 @@ DEPENDENCIES
   bootsnap
   capybara
   debug
-  font-awesome-rails
+  font-awesome-sass (~> 6.2.0)
   importmap-rails
   jbuilder
   playbook_ui (~> 13.27.0)
   puma (~> 5.6)
   rails (~> 7.0.8)
   react-rails
+  rubocop
+  rubocop-performance
   sass-rails
   selenium-webdriver
   sprockets-rails
