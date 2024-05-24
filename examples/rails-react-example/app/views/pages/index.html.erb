@@ -26,6 +26,9 @@
     { icon:  "exclamation-triangle", variant: "yellow", size: "lg", text: "Escalated (YTD)", value: 896.0 },
 ] %>
 
+
+
+<%# end top section%>
 <%= pb_rails("nav", props: {variant: "subtle", orientation: "horizontal"}) do %>
 <%= %>
 <% end %>
@@ -33,6 +36,8 @@
 
 
 <%= pb_rails("section_separator") %>
+
+
 
 <%# 2nd top section Navigation %>
 <%= pb_rails("body", props: {margin_left: 'xl', margin_right: 'lg'}) do%>
@@ -45,17 +50,29 @@
 <% end %>
 <%# end top section%>
 
+
+
+
 <%= pb_rails("section_separator") %>
 <br/>
 
+
+
+
+
 <%# Dashboard Section Header %>
-<%= pb_rails("body", props: {margin_left: 'xl', margin_right: 'lg'}) do%>
+<%= pb_rails("body", props: {margin_left: 'xl', margin_right: 'xl'}) do%>
     <%= pb_rails("caption", props: { text: "DASHBOARD", size: 'xs' }) %>
     <%= pb_rails("title", props: { text: "Commerce Dashboard", tag: "h3", size: 3, bold: false })%>
 <% end%>
 <%# end Dashboard Section Header %>
 
- <%= pb_rails("card", props: { padding: "none", border_none: true, margin: "sm" }) do %>
+
+
+
+<%# Begin Performance Graph %>
+<%= pb_rails("body", props: {margin_left: 'xl', margin_right: 'xl'}) do%>
+ <%= pb_rails("card", props: { padding: "none", border_none: true, margin_top: "sm" }) do %>
     <%= pb_rails("flex", props: {vertical: "center", spacing: "between"}) do %>
         <%= pb_rails("title", props: { text: "Key Performance Indicator", tag: "h4", size: 4, padding: "sm" }) %> 
         <%# <%= pb_rails("circle_icon_button", props: {
@@ -90,12 +107,17 @@
 
     <% end %>
   <% end %>
+ <% end %>
+ <%# End Performance Graph End %>
 
+
+
+ <%#=BEGIN ticket escalations%>
 <%= pb_rails("flex", props:{justify: "center" }) do%>
     <%= pb_rails("caption", props: { text: "This Weeks Ticket Escalations", size: 'xs', margin_top: 'sm'}) %>
-  <% end%>
+<% end%>
 
-<%= pb_rails("flex", props:{justify: "evenly", margin_top: 'xs'}) do%>
+<%= pb_rails("flex", props:{margin: 'xl', justify: 'between', wrap: true}) do%>
   <%card_list.each do |card|%>
    <%= pb_rails("flex/flex_item", props:  {fixed_size: "250px"}) do %>
     <%= pb_rails("card", props: {highlight: {position: "side", color: card[:tab_color]}, margin_bottom: "sm"}) do %>
@@ -107,10 +129,15 @@
   <% end %>
  <% end %>
 <% end %>
+ <%#=END ticket escalations  END%>
 
-<%= pb_rails("flex", props:{ margin_top: 'xs', justify: "evenly", grow: true }) do%>
+
+ <%#= BEGIN BOTTOM SECTION%>
+ <%= pb_rails("flex", props:{margin: 'xl', orientation: 'row'}) do%>
+  <div class='big'>
+
        <%#= BEGIN LEFT SIDE CHART%>
-  <%= pb_rails("card", props: { padding: "none", border_none: true, shadow: "deeper",margin: "sm" }) do %>
+   <%= pb_rails("card", props: { padding: "none", border_none: true, shadow: "deeper",margin: "sm" }) do %>
       <%= pb_rails("flex", props: {vertical: "center",spacing: "between"}) do %>
          <%= pb_rails("title", props: { text: "Pipeline Chart", tag: "h4", size: 4, padding: "sm" }) %> 
          <%= pb_rails("circle_icon_button", props: {icon: "flag", margin_right: 'xs', variant: 'secondary'}) %>
@@ -141,19 +168,40 @@
 
     <%#= BEGIN RIGHT SIDE SQUARES%>
     <%= pb_rails("card", props: { border_none: true, shadow: "deeper",padding:"none", margin: "sm"}) do %>
-      <%= pb_rails("flex", props: {}) do %>
+      <div class="gridone">
         <% ticket_data.each do |ticket|%>
-          <%= pb_rails("background", props: { background_color: "white", padding: "md"}) do %>
-            <%= pb_rails("flex", props: {}) do %>
-              <%= pb_rails("flex/flex_item",props:{fixed_size: "20px"}) do %>
+          <%= pb_rails("background", props: { background_color: "white", padding: "md", max_width: "xs"}) do %>
+            <%= pb_rails("flex", props: {horizontal: "left", vertical: "center"}) do %>
+              <%= pb_rails("flex/flex_item",props:{fixed_size: "15px"}) do %>
                 <%= pb_rails("icon_stat_value", props: ticket ) %>
               <% end %>
             <% end %>
           <% end %>
         <% end %>
-     <%end%>
+      </div>
     <% end %>
-<%end%>
+ </div>
+ <% end %>
+ <%#= END BOTTOM SECTION %>
+
+<style>
+[class^=grid]{
+  display: grid;
+  gap: 1px;
+  grid-template-columns: repeat(2, minmax(0, 2fr));
+    /* grid-template-columns: repeat(2); */
+  background-color: #e4e8f0; /* $border_light */
+  /* grid-template: auto auto / auto auto; */
+}
+
+[class^=big]{
+  display: grid;
+  /* justify-items: start; */
+   /* grid-template-rows: repeat(1, minmax(0, 1fr)); */
+  grid-template: auto auto / auto auto;
+}
+
+</style>
 
 
 
