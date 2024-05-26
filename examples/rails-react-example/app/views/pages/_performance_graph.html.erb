@@ -1,0 +1,37 @@
+<%= pb_rails("body", props: {margin_left: 'xl', margin_right: 'xl'}) do%>
+    <%= pb_rails("card", props: { padding: "none", border_none: true, margin_top: "sm" }) do %>
+
+        <%= pb_rails("flex", props: {vertical: "center", spacing: "between"}) do %>
+            <%= pb_rails("title", props: { text: "Key Performance Indicator", tag: "h4", size: 4, padding: "sm" }) %> 
+            <%= pb_rails("circle_icon_button", props: {icon: "ellipsis", margin_right: 'xs', variant: 'secondary'}) %>
+        <% end %>
+
+        <%= pb_rails("section_separator") %>
+
+        <%= pb_rails("layout", props: {position: "left", size: "sm", collapse: "md"}) do %>
+            <%= pb_rails("nav", props: {link: "#"}) do %>
+                <%= pb_rails("nav/item", props: { text: "Revenue", link: "#", active: true  }) %>
+                <%= pb_rails("nav/item", props: { text: "Orders", link: "#" }) %>
+                <%= pb_rails("nav/item", props: { text: "Profit", link: "#"}) %>
+                <%= pb_rails("nav/item", props: { text: "Average Check", link: "#" }) %>
+                <%= pb_rails("nav/item", props: { text: "Canceled", link: "#" }) %>
+                <%= pb_rails("nav/item", props: { text: "Repeat Sales", link: "#" }) %>
+            <% end %>
+
+    
+            <%= pb_rails("layout/body", props: {margin_top: 'xl'}) do %> 
+                <% data2 = [{
+                    name: 'Installation',
+                    data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]
+                }, ] %>
+                <%= pb_rails("line_graph", props: { 
+                    gradient: false, 
+                    chart_data: data2, 
+                    x_axis_categories:["5/1 #{' '} 5/15 ", '5/15','6/1','6/15','7/1','7/15','8/1','8/15','9/1','9/15','10/1','10/15', '11/1', '11/15'], 
+                    point_start: 0,  }  ) %>
+            <% end %>
+        <% end %>
+
+        
+    <% end %>
+<% end %>

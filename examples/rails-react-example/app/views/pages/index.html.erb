@@ -20,45 +20,29 @@
 ] %>
 
 <% ticket_data = [
-    { icon:  "ticket-alt", variant: "green", size: "lg", text: "Tickets (YTD)", value: 1426.0 },
-    { icon:  "times-square", variant: "red", size: "lg", text: "Overdue", value: 25.0 },
-    { icon:  "tasks", variant: "teal", size: "lg", text: "Closed Without Action (YTD)", value: 97.0 },
-    { icon:  "exclamation-triangle", variant: "yellow", size: "lg", text: "Escalated (YTD)", value: 896.0 },
+    { icon:  "ticket-alt", variant: "green", size: "sm", text: "Tickets (YTD)", value: 1426.0 },
+    { icon:  "times-square", variant: "red", size: "sm", text: "Overdue", value: 25.0 },
+    { icon:  "tasks", variant: "teal", size: "sm", text: "Closed Without Action (YTD)", value: 97.0 },
+    { icon:  "exclamation-triangle", variant: "yellow", size: "sm", text: "Escalated (YTD)", value: 896.0 },
 ] %>
 
 
 
-<%# end top section%>
-<%= pb_rails("nav", props: {variant: "subtle", orientation: "horizontal"}) do %>
-<%= %>
-<% end %>
-<%# end top section%>
-
-
-<%= pb_rails("section_separator") %>
+<%# render User Header %>
+<%= render 'global/header' %>
 
 
 
-<%# 2nd top section Navigation %>
-<%= pb_rails("body", props: {margin_left: 'xl', margin_right: 'lg'}) do%>
- <%= pb_rails("nav", props: { orientation: "horizontal", }) do %> 
-   <%= pb_rails("nav/item", props: { text: "Dashboard",  active: true  }) %>
-   <%= pb_rails("nav/item", props: { text: "Products", link: "#"}) %>
-   <%= pb_rails("nav/item", props: { text: "In Progress ", link: "#" }) %>
-   <%= pb_rails("nav/item", props: { text: "Settings", link: "#" }) %>
- <% end %>
-<% end %>
-<%# end top section%>
 
 
-
+<%#top section Navigation %>
+<%= render 'navigation_topbar' %>
 
 <%= pb_rails("section_separator") %>
 <br/>
 
 
-
-
+<%= pb_rails("body", props: {padding_bottom: 'xl'}) do %>
 
 <%# Dashboard Section Header %>
 <%= pb_rails("body", props: {margin_left: 'xl', margin_right: 'xl'}) do%>
@@ -67,141 +51,78 @@
 <% end%>
 <%# end Dashboard Section Header %>
 
-
-
-
 <%# Begin Performance Graph %>
-<%= pb_rails("body", props: {margin_left: 'xl', margin_right: 'xl'}) do%>
- <%= pb_rails("card", props: { padding: "none", border_none: true, margin_top: "sm" }) do %>
-    <%= pb_rails("flex", props: {vertical: "center", spacing: "between"}) do %>
-        <%= pb_rails("title", props: { text: "Key Performance Indicator", tag: "h4", size: 4, padding: "sm" }) %> 
-        <%# <%= pb_rails("circle_icon_button", props: {
-          variant: "link",
-          icon: "ellipsis-h"
-        }) %>
-        <%# <%= pb_rails("icon", props: { icon: "icon_circle_button",  fixed_width: true }) %> 
-        <%# <%= pb_rails("icon_circle", props: {icon: "...", size: 'sm', variant: 'teal', margin_right: 'xs'}) %> 
-        <%= pb_rails("circle_icon_button", props: {icon: "flag", margin_right: 'xs', variant: 'secondary'}) %>
-     <% end %>
+<%= render 'performance_graph' %>
 
-      <%= pb_rails("section_separator") %>
+<%#=BEGIN ticket escalations%>
+<%= render 'ticket_escalations', card_list: card_list %>
 
-   <%= pb_rails("layout", props: {position: "left", size: "sm", collapse: "md", margin_top: "sm"}) do %>
-     <%= pb_rails("nav", props: {link: "#"}) do %>
-       <%= pb_rails("nav/item", props: { text: "Revenue", link: "#", active: true  }) %>
-       <%= pb_rails("nav/item", props: { text: "Orders", link: "#" }) %>
-       <%= pb_rails("nav/item", props: { text: "Profit", link: "#"}) %>
-       <%= pb_rails("nav/item", props: { text: "Average Check", link: "#" }) %>
-       <%= pb_rails("nav/item", props: { text: "Canceled", link: "#" }) %>
-       <%= pb_rails("nav/item", props: { text: "Repeat Sales", link: "#" }) %>
-      <% end %>
 
-  
-      <%= pb_rails("layout/body") do %> 
-       <% data2 = [{
-        name: 'Installation',
-        data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]
-       }, ] %>
-       <%= pb_rails("line_graph", props: { id: "line-test", gradient: false, chart_data: data2, point_start: 1,  }  ) %>
-      <% end %>
-
-    <% end %>
+<h2>Employee List</h2>
+<ul>
+  <% @tickets.each do |ticket| %>
+  <%= puts ticket %>
+    <li><%= ticket.employee_id %> - <%= ticket.description %></li>
   <% end %>
- <% end %>
- <%# End Performance Graph End %>
+</ul>
 
+<%#= BEGIN BOTTOM SECTION%>
+<%= pb_rails("body", props: {margin_left: 'xl', margin_right: 'xl', margin_top: 'lg'}) do%>
+    <div class='big_grid'>
+        <%= render 'pipeline_chart', pipeLine_data: pipeLine_data %>
+        <%= render 'ticket_grid', ticket_data: ticket_data %>
+  </div>
+<%end%>
+<%#= END BOTTOM SECTION%>
 
-
- <%#=BEGIN ticket escalations%>
-<%= pb_rails("flex", props:{justify: "center" }) do%>
-    <%= pb_rails("caption", props: { text: "This Weeks Ticket Escalations", size: 'xs', margin_top: 'sm'}) %>
-<% end%>
-
-<%= pb_rails("flex", props:{margin: 'xl', justify: 'between', wrap: true}) do%>
-  <%card_list.each do |card|%>
-   <%= pb_rails("flex/flex_item", props:  {fixed_size: "250px"}) do %>
-    <%= pb_rails("card", props: {highlight: {position: "side", color: card[:tab_color]}, margin_bottom: "sm"}) do %>
-      <%= pb_rails("flex", props:{justify: "evenly"}) do%>
-     <%= pb_rails("caption", props: {text: card[:title], color: 'lighter', size: 'xs'}) %> 
-     <%= pb_rails("label_pill", props: {pill_value: card[:pill_value], variant: card[:tab_color]}) %> 
-     <%end%>
-    <% end %>
-  <% end %>
- <% end %>
-<% end %>
- <%#=END ticket escalations  END%>
-
-
- <%#= BEGIN BOTTOM SECTION%>
- <%= pb_rails("flex", props:{margin: 'xl', orientation: 'row'}) do%>
-  <div class='big'>
-
-       <%#= BEGIN LEFT SIDE CHART%>
-   <%= pb_rails("card", props: { padding: "none", border_none: true, shadow: "deeper",margin: "sm" }) do %>
-      <%= pb_rails("flex", props: {vertical: "center",spacing: "between"}) do %>
-         <%= pb_rails("title", props: { text: "Pipeline Chart", tag: "h4", size: 4, padding: "sm" }) %> 
-         <%= pb_rails("circle_icon_button", props: {icon: "flag", margin_right: 'xs', variant: 'secondary'}) %>
-      <% end %>
-
-      <%= pb_rails("section_separator") %>
-
-    <%pipeLine_data.each do |data_set|%>
-      <%= pb_rails("flex", props: {vertical: "center",spacing: "between", padding: "sm"}) do %>
-          <%= pb_rails("flex/flex_item", props: {fixed_size: "100px"}) do %>
-              <%= pb_rails("caption", props: { text: data_set[:label], size: 'xs' }) %>
-            <% end %>
-        <%= pb_rails("flex/flex_item", props: {grow:true, margin_top: 'xs', padding: 'sm'}) do %>
-         <%= pb_rails("flex", props: {vertical: "center", spacing: "around"}) do %>
-            <%= pb_rails("progress_simple", props: { width: "100px", percent: data_set[:percent] }) %>
-                <%= pb_rails("flex/flex_item") do %>
-                  <%= pb_rails("caption", props: { margin_left: "xs", text: "#{data_set[:percent]}%", size: 'xs' }) %>
-                <% end %>
-                  <%= pb_rails("flex/flex_item") do %>
-                   <%= pb_rails("caption", props: {margin_left: "xs", text: "#{data_set[:value]}"}) %>
-                  <% end %>
-          <% end %>
-        <% end %>
-       <%end%>
-      <% end %>
-   <%end%>
-    <%#= END LEFT SIDE CHART%>
-
-    <%#= BEGIN RIGHT SIDE SQUARES%>
-    <%= pb_rails("card", props: { border_none: true, shadow: "deeper",padding:"none", margin: "sm"}) do %>
-      <div class="gridone">
-        <% ticket_data.each do |ticket|%>
-          <%= pb_rails("background", props: { background_color: "white", padding: "md", max_width: "xs"}) do %>
-            <%= pb_rails("flex", props: {horizontal: "left", vertical: "center"}) do %>
-              <%= pb_rails("flex/flex_item",props:{fixed_size: "15px"}) do %>
-                <%= pb_rails("icon_stat_value", props: ticket ) %>
-              <% end %>
-            <% end %>
-          <% end %>
-        <% end %>
-      </div>
-    <% end %>
- </div>
- <% end %>
- <%#= END BOTTOM SECTION %>
+<%end%>
+<%#= END OF BODY/CONTAINER FOR PAGE WITH MARGINS %>
 
 <style>
-[class^=grid]{
+
+
+[class^=right]{
   display: grid;
-  gap: 1px;
+  grid-template-rows: repeat(2, 1fr);
+  /* grid-template-rows: 2 auto 1fr 1fr 1fr auto auto; */
+  grid-template-columns: repeat(2, 1fr);
+  /* grid-template-columns: 1fr 1.5fr 1fr; */
+   height: 584px
+  }
+
+[class^=flex_item]{
+flex-basis: 100px;
+ @media (max-width: 600px) {
+ flex-basis: 50px;
+   }
+  }
+
+
+
+[class^=big_grid]{
+  display: grid;
   grid-template-columns: repeat(2, minmax(0, 2fr));
-    /* grid-template-columns: repeat(2); */
-  background-color: #e4e8f0; /* $border_light */
+  margin-bottom: 10px;
+  
+  @media (max-width: 600px) {
+   grid-template-columns: repeat(1, minmax(0, 2fr));
+   }
+  /* justify-items: start; */
+   /* grid-template-rows: repeat(1, minmax(0, 1fr)); */
   /* grid-template: auto auto / auto auto; */
 }
 
-[class^=big]{
-  display: grid;
-  /* justify-items: start; */
-   /* grid-template-rows: repeat(1, minmax(0, 1fr)); */
-  grid-template: auto auto / auto auto;
-}
-
 </style>
+
+
+  
+  
+
+
+
+
+
+
 
 
 

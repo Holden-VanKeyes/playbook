@@ -1,0 +1,29 @@
+<%= pb_rails("flex", props:{justify: "center" }) do%>
+    <%= pb_rails("caption", props: { text: "This Weeks Ticket Escalations", size: 'xs', margin_y: 'sm'}) %>
+<% end%>
+
+<h1>Employee List</h1>
+<ul>
+  <% @employees.each do |employee| %>
+    <li><%= employee.name %> - <%= employee.avatar_url %> </li>
+  <%= pb_rails("avatar", props: {
+    size: "lg",
+    image_url: employee[:avatar_url],
+    status: "away"
+  }) %>
+  <% end %>
+</ul>
+
+
+<%= pb_rails("flex", props:{margin_left: 'xl', margin_right: 'xl', justify: 'between', wrap: true}) do%>
+    <%card_list.each do |card|%>
+        <%= pb_rails("flex/flex_item", props:  {fixed_size: "250px"}) do %>
+            <%= pb_rails("card", props: {highlight: {position: "side", color: card[:tab_color]}, margin_bottom: "sm"}) do %>
+                <%= pb_rails("flex", props:{justify: "evenly"}) do%>
+                    <%= pb_rails("caption", props: {text: card[:title], color: 'lighter', size: 'xs'}) %> 
+                    <%= pb_rails("label_pill", props: {pill_value: card[:pill_value], variant: card[:tab_color]}) %> 
+                <%end%>
+            <% end %>
+        <% end %>
+    <% end %>
+<% end %>

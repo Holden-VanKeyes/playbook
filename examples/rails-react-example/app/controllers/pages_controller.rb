@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
 class PagesController < ApplicationController
-  def index; end
+  def index
+    # @employees = Employee.all
+    @tickets = Ticket.all
+  end
 end
