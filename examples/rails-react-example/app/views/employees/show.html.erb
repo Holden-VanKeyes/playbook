@@ -1,0 +1,25 @@
+<%emp_tix = Ticket.get_employee_tix(params[:id].to_i)%>
+<%= render 'global/header' %>
+
+<% if emp_tix.size > 0 %>
+    <%= pb_rails("flex", props: { padding: "sm", wrap: true, margin: 'xl' }) do %>
+        <% emp_tix.each do |tix|%>
+
+            <%= pb_rails("flex/flex_item", props:  {fixed_size: "250px",  margin: 'sm'}) do %>
+                <%= pb_rails("card", props: { padding: "none", header: true}) do %>
+                    <%= pb_rails("card/card_header", props: { padding: "sm" }) do %>
+                        <%= pb_rails("detail", props: { text: tix[:category] }) %>
+                    <% end %>
+                    <%= pb_rails("card/card_body", props: { padding: "sm" }) do %>
+                    <%= tix[:error_type]%>
+                    <%= tix[:description]%>
+                    <%end%>
+                <%end%>
+            <%end%>
+        <%end%>
+    <%end%>
+<%end%>
+
+
+
+

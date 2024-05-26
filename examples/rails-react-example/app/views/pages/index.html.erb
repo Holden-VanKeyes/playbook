@@ -58,13 +58,7 @@
 <%= render 'ticket_escalations', card_list: card_list %>
 
 
-<h2>Employee List</h2>
-<ul>
-  <% @tickets.each do |ticket| %>
-  <%= puts ticket %>
-    <li><%= ticket.employee_id %> - <%= ticket.description %></li>
-  <% end %>
-</ul>
+
 
 <%#= BEGIN BOTTOM SECTION%>
 <%= pb_rails("body", props: {margin_left: 'xl', margin_right: 'xl', margin_top: 'lg'}) do%>
@@ -97,7 +91,26 @@ flex-basis: 100px;
    }
   }
 
-
+    [class^=cards]{
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-clip: border-box;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #E4E8F0;
+    background-color: #FFFFFF;
+    padding: 24px;
+      &:hover {
+      background-color: #f7fbff
+      }
+  }
+  [class^=notifications]{
+    cursor: pointer;
+  }
 
 [class^=big_grid]{
   display: grid;

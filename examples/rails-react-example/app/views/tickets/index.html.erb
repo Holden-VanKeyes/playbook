@@ -1,5 +1,5 @@
 
-<%# <%= render 'global/header' %> 
+<%= render 'global/header'  %>
 
 <ul>
   <% @tickets.each do |ticket| %>
@@ -10,3 +10,4 @@
     <li><%=  ticket.error_type%> </li>
   <% end %>
 </ul>
+

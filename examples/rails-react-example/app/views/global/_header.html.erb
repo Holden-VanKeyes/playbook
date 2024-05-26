@@ -1,3 +1,5 @@
+<% employee_id = Employee.all.first[:id]%>
+<% employee_tix = Ticket.get_employee_tix(employee_id) %>
 
 <%= pb_rails("flex", props: {justify: 'between', padding_top: "xs", padding_bottom: "xs", margin_left: 'xl', margin_right: 'xl', align: "center"  }) do %>
     <%= pb_rails("flex", props: {align: "center"}) do %>
@@ -11,13 +13,17 @@
     <% end %>
 
     <%= pb_rails("flex", props: { }) do %>
-            <%= pb_rails("flex/flex_item", props: {margin_right: 'xl'} ) do %>
-                <%= pb_rails("icon_value", props: {
-                    icon: "bell",
-                    text: "4"
-                    }) %>
-            <% end %>
-
+            <%= link_to employee_path(employee_id) do%>
+                <div class='notifications'>
+                    <%= pb_rails("flex/flex_item", props: {margin_right: 'xl'} ) do %>
+                        <%= pb_rails("icon_value", props: {
+                            icon: "bell",
+                            text: employee_tix.size,
+                            id: "ticket_count"
+                            }) %>
+                    <% end %>
+                </div>
+            <%end%>
             <%= pb_rails("flex/flex_item", props: {margin_right: 'xl'}) do %>
                 <%= pb_rails("icon_value", props: {
                 icon: "inbox",
@@ -26,22 +32,30 @@
             <% end %>
 
             <%= pb_rails("flex", props: {margin_right: 'lg', align: "center"}) do %>
-                <%= pb_rails("body", props: {margin_right: 'xs'}) do %>
-                <small><b>Indira Shree</b></small>
-                <% end %>
+                <%employee = Employee.all.first if Employee.any? %>
+                    <%= pb_rails("body", props: {margin_right: 'xs'}) do %>
+                        <small><b><%= employee ? employee[:name] : 'Temp User' %></b></small>
+                    <% end %>
 
-                <%= pb_rails("avatar", props: {
-                name: "Anna Black",
-                size: "xxs",
-                image_url: "https://randomuser.me/api/portraits/women/44.jpg"
-                }) %>
-                <%= pb_rails("icon", props: { icon: "chevron-down", size: "xs" }) %>
+                    <%= pb_rails("avatar", props: {name: employee ? employee[:name] : 'Temp User', size: "xxs", image_url: employee ? 
+                    employee[:avatar_url] : '' }) %>
+                    <%= pb_rails("icon", props: { icon: "chevron-down", size: "xs" }) %>
+
            <% end %>
    <% end %>
 
    
 <% end %>
 <%= pb_rails("section_separator") %>
+
+<%= pb_rails("tooltip", props: {
+  trigger_element_id: "ticket_count",
+  tooltip_id: "sample-email-tooltip-result-1",
+  position: "top"
+}) do %>
+  View Your Tickets
+<% end %>
+
 
     
 

@@ -2,7 +2,7 @@
 
 class PagesController < ApplicationController
   def index
-    # @employees = Employee.all
+    @employees = Employee.all
     @tickets = Ticket.all
   end
 end

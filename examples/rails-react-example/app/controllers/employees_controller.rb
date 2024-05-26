@@ -1,9 +1,9 @@
 class EmployeesController < ApplicationController
   def index
-    @employees = Employee.all
+    Employee.all
   end
 
   def show
-    @employees = Employee.all
+    Employee.find(params[:id])
   end
 end
