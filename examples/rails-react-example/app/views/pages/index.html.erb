@@ -1,7 +1,4 @@
 
-<%# 1st top section - logo - inbox - notifications - profile-pic w/dropdown%>
-<%# <%= fa_icon "flag" %> 
-
  <% card_list = [
   { title: "NEW", tab_color: "info", pill_value: 25 },
   { title: "MANAGER FEEDBACK", tab_color: "primary", pill_value: 5 },
@@ -27,51 +24,29 @@
 ] %>
 
 
-
-<%# render User Header %>
 <%= render 'global/header' %>
 
 
-
-
-
-<%#top section Navigation %>
 <%= render 'navigation_topbar' %>
 
 <%= pb_rails("section_separator") %>
 <br/>
 
+<div class=main-container>
 
-<%= pb_rails("body", props: {padding_bottom: 'xl'}) do %>
+  <%= pb_rails("caption", props: { text: "DASHBOARD", size: 'xs' }) %>
+  <%= pb_rails("title", props: { text: "Commerce Dashboard", tag: "h3", size: 3, bold: false })%>
 
-<%# Dashboard Section Header %>
-<%= pb_rails("body", props: {margin_left: 'xl', margin_right: 'xl'}) do%>
-    <%= pb_rails("caption", props: { text: "DASHBOARD", size: 'xs' }) %>
-    <%= pb_rails("title", props: { text: "Commerce Dashboard", tag: "h3", size: 3, bold: false })%>
-<% end%>
-<%# end Dashboard Section Header %>
+  <%= render 'performance_graph' %>
 
-<%# Begin Performance Graph %>
-<%= render 'performance_graph' %>
+  <%= render 'ticket_escalations', card_list: card_list %>
 
-<%#=BEGIN ticket escalations%>
-<%= render 'ticket_escalations', card_list: card_list %>
-
-
-
-
-<%#= BEGIN BOTTOM SECTION%>
-<%= pb_rails("body", props: {margin_left: 'xl', margin_right: 'xl', margin_top: 'lg'}) do%>
-    <div class='big_grid'>
-        <%= render 'pipeline_chart', pipeLine_data: pipeLine_data %>
-        <%= render 'ticket_grid', ticket_data: ticket_data %>
+  <div class='big-grid'>
+      <%= render 'pipeline_chart', pipeLine_data: pipeLine_data %>
+      <%= render 'ticket_grid', ticket_data: ticket_data %>
   </div>
-<%end%>
-<%#= END BOTTOM SECTION%>
 
-<%end%>
-<%#= END OF BODY/CONTAINER FOR PAGE WITH MARGINS %>
-
+</div>
 
   
   

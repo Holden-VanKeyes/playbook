@@ -4,8 +4,8 @@
 
 
 
-
-<%= pb_rails("flex", props:{margin_left: 'xl', margin_right: 'xl', justify: 'between', wrap: true}) do%>
+<div class='escalations-container'>
+<%# <%= pb_rails("flex", props:{ wrap: true}) do%> 
     <%card_list.each do |card|%>
     <% filtered_tix = @tickets.filter {|ticket| ticket[:category].upcase == card[:title]} %>
         <%= pb_rails("flex/flex_item", props:  {fixed_size: "250px",  margin_bottom: "sm"}) do %>
@@ -21,7 +21,7 @@
                     <% filtered_tix.slice(0,6).each do |ticket|%>
                         <% employee_avatar_url = Employee.get_avatar_url(ticket[:employee_id]) %>
                             <%# <%= link_to root_path do%> 
-                                <div class='cards'>
+                                <div class='escalation-cards'>
                                     <%= pb_rails("flex", props:{align: 'center', justify: 'between'}) do%>
                                         <%= pb_rails("avatar", props: {size: "xs", image_url: employee_avatar_url}) %>
                                         <%= pb_rails("caption", props: {text: ticket[:error_type], color: 'lighter', size: 'xs'}) %> 
@@ -36,19 +36,19 @@
                 <%else%>
                     <% filtered_tix.each do |ticket|%>
                         <% employee_avatar_url = Employee.get_avatar_url(ticket[:employee_id]) %>
-                        <%= pb_rails('card',  props: {}) do %>
+                         <div class='escalation-cards'>
                             <%= pb_rails("flex", props:{align: 'center', justify: 'between'}) do%>
                                 <%= pb_rails("avatar", props: {size: "xs", image_url: employee_avatar_url}) %>
                                 <%= pb_rails("caption", props: {text: ticket[:error_type], color: 'lighter', size: 'xs'}) %> 
                             <%= pb_rails("icon", props: { icon: "chevron-right", size: "xs" }) %>
                             <%end%>
-                        <% end %>
+                        </div>
                     <% end %>
                 <%end%>
                 
              
                 <% if filtered_tix.size > 6 %>
-                     <div class='cards'>
+                     <div class='escalation-cards'>
                         <%= pb_rails("flex", props:{align: 'center', justify: 'between'}) do%>
                             <%= pb_rails("detail", props: {text: 'Show More', color: 'link', size: 'xs'}) %> 
                         <%end%>
@@ -58,8 +58,8 @@
 
         <% end %>
     <% end %>
-<% end %>
-         
+ <%# <% end %> 
+</div>     
 
            
                 

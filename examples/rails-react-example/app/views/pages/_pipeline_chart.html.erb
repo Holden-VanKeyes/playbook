@@ -1,4 +1,4 @@
-<%= pb_rails("card", props: { border_none: true, shadow: "deeper",padding:"none", margin_right: "sm",  border_radius: 'none'}) do %>
+<%= pb_rails("card", props: { border_none: true, shadow: "deeper", padding:"none",  border_radius: 'none'}) do %>
 
     <%= pb_rails("flex", props: {vertical: "center"}) do %>
         <%= pb_rails("title", props: { text: "Pipeline Chart", tag: "h5", size: 5, padding: "sm" }) %> 
@@ -7,7 +7,7 @@
 
     <%pipeLine_data.each do |data_set|%>
         <%= pb_rails("flex", props: {vertical: "center",spacing: "between", padding: "sm"}) do %>
-            <div class=flex_item>
+            <div class=pipeline-container>
             <%= pb_rails("caption", props: { text: data_set[:label], size: 'xs' }) %>
             </div>
 

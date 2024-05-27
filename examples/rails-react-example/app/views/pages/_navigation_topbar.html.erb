@@ -1,8 +1,10 @@
-<%= pb_rails("body", props: {margin_left: 'xl', margin_right: 'lg'}) do%>
-    <%= pb_rails("nav", props: { orientation: "horizontal", }) do %> 
+
+<%= pb_rails("nav", props: { orientation: "horizontal", }) do %> 
+    <div class='navbar'>
         <%= pb_rails("nav/item", props: { text: "Dashboard",  active: true  }) %>
         <%= pb_rails("nav/item", props: { text: "Products", link: "#"}) %>
         <%= pb_rails("nav/item", props: { text: "In Progress ", link: "#" }) %>
         <%= pb_rails("nav/item", props: { text: "Settings", link: "#" }) %>
-    <% end %>
-<% end %> 
+    </div>
+<% end %>
+

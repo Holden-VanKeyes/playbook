@@ -1,7 +1,7 @@
 <% employee_id = Employee.all.first[:id]%>
 <% employee_tix = Ticket.get_employee_tix(employee_id) %>
-
-<%= pb_rails("flex", props: {justify: 'between', padding_top: "xs", padding_bottom: "xs", margin_left: 'xl', margin_right: 'xl', align: "center"  }) do %>
+<%= pb_rails("flex", props: {justify: 'between', padding_top: "sm", padding_bottom: "sm", margin_left: 'xl', margin_right: 'xl', align: "center"  }) do %>
+<%# <div class='header'> %>
     <%= pb_rails("flex", props: {align: "center"}) do %>
          <%= pb_rails("icon", props: { icon: "hamburger", size: "lg" }) %>
             <%= pb_rails("flex", props: {orientation: 'column', margin_left: 'xs', padding: 'none'}) do %>
@@ -37,7 +37,7 @@
                         <small><b><%= employee ? employee[:name] : 'Temp User' %></b></small>
                     <% end %>
 
-                    <%= pb_rails("avatar", props: {name: employee ? employee[:name] : 'Temp User', size: "xxs", image_url: employee ? 
+                    <%= pb_rails("avatar", props: {size: "xxs", image_url: employee ? 
                     employee[:avatar_url] : '' }) %>
                     <%= pb_rails("icon", props: { icon: "chevron-down", size: "xs" }) %>
 
@@ -45,6 +45,7 @@
    <% end %>
 
    
+<%# </div> %>
 <% end %>
 <%= pb_rails("section_separator") %>
 

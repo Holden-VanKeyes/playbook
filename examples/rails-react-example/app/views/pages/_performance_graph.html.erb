@@ -1,7 +1,7 @@
-<%= pb_rails("body", props: {margin_left: 'xl', margin_right: 'xl'}) do%>
+
     <%= pb_rails("card", props: { padding: "none", border_none: true, margin_top: "sm" }) do %>
-<% date_arr = @revenue_data.map{|data| data[:date]}%>
-<% revenue_arr = @revenue_data.map{|data| data[:amount]}.sort%>
+        <% date_arr = @revenue_data.map{|data| data[:date]}%>
+        <% revenue_arr = @revenue_data.map{|data| data[:amount]}.sort%>
 
 
 
@@ -38,4 +38,3 @@
 
         
     <% end %>
-<% end %>

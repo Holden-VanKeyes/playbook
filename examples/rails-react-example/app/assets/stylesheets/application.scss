@@ -33,22 +33,62 @@ $extrabold:     700;
 @import "font-awesome";
 
 
-.right{
+.main-container{
+   margin-left: 40px;
+   margin-right: 40px;
+   padding-bottom: 40px;
+   @media (max-width: 600px) {
+    justify-content: center;
+      }
+}
+// .header{
+//     display: flex;
+//     @media (max-width: 600px) {
+//         flex-direction: column;
+//           }
+// }
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 40px;
+    @media (max-width: 600px) {
+       flex-direction: column;
+       margin-left: 16px;
+          }
+}
+
+.escalations-container{
+   display: flex;
+   justify-content: space-between;
+   flex-wrap: wrap;
+    @media (max-width: 600px) {
+      justify-content: center;
+        }
+}
+
+.right-container{
+    display: flex;
+    justify-content: flex-end;
+    @media (max-width: 600px) {
+        margin-left: 0;
+        margin-top: 16px;
+          }
+}
+.right-grid{
     display: grid;
     grid-template-rows: repeat(2, 1fr);
     grid-template-columns: repeat(2, 1fr);
-    height: 584px
+    height: 100%;
 }
   
-.flex_item{
+.pipeline-container{
     flex-basis: 100px;
-
     @media (max-width: 600px) {
     flex-basis: 50px;
     }
 }
   
-.cards{
+.escalation-cards{
     cursor: pointer;
     position: relative;
     display: flex;
@@ -61,7 +101,6 @@ $extrabold:     700;
     border-color: #E4E8F0;
     background-color: #FFFFFF;
     padding: 24px;
-
         &:hover {
         background-color: #f7fbff
 }
@@ -71,11 +110,11 @@ $extrabold:     700;
     cursor: pointer;
 }
 
-.big_grid{
+.big-grid{
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 2fr));
     margin-bottom: 10px;
-
+    margin-top: 32px;
     @media (max-width: 600px) {
         grid-template-columns: repeat(1, minmax(0, 2fr));
         }
