@@ -4,16 +4,31 @@
 <% if emp_tix.size > 0 %>
     <%= pb_rails("flex", props: { padding: "sm", wrap: true, margin: 'xl' }) do %>
         <% emp_tix.each do |tix|%>
-
+    
+            <%highlight_color = @card_list.find{|card| card[:title] == tix[:category].upcase}%>
+     
+      
             <%= pb_rails("flex/flex_item", props:  {fixed_size: "250px",  margin: 'sm'}) do %>
-                <%= pb_rails("card", props: { padding: "none", header: true}) do %>
-                    <%= pb_rails("card/card_header", props: { padding: "sm" }) do %>
+                <%= pb_rails("card", props: { padding: "none", shadow: "deeper", header: true, highlight: {position: "top", color: highlight_color[:tab_color]}}) do %>
+                    <%= pb_rails("card/card_header", props: { padding: "sm", header_color: "none"}) do %>
                         <%= pb_rails("detail", props: { text: tix[:category] }) %>
                     <% end %>
+
                     <%= pb_rails("card/card_body", props: { padding: "sm" }) do %>
-                    <%= tix[:error_type]%>
-                    <%= tix[:description]%>
+                        <%= pb_rails("caption", props: { text: 'Error Type:', size: 'xs' })  %>
+                        <%= tix[:error_type]%>
                     <%end%>
+                        <%= pb_rails("section_separator") do%>
+                         <%= pb_rails("online_status", props: { status: highlight_color[:tab_color] }) %>
+                         <%= pb_rails("online_status", props: { status: highlight_color[:tab_color] }) %>
+                         <%= pb_rails("online_status", props: { status: highlight_color[:tab_color] }) %>
+                        <%end%>
+                    <%= pb_rails("card/card_body", props: { padding: "sm" }) do %>
+                        <%= pb_rails("caption", props: { text: 'Description:', size: 'xs' })  %>
+                        <%= tix[:description]%>
+                    <%end%>
+                       
+
                 <%end%>
             <%end%>
         <%end%>

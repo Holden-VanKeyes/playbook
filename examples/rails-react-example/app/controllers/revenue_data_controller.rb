@@ -1,0 +1,2 @@
+class RevenueDataController < ApplicationController
+end

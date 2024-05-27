@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :revenue_data
   resources :tickets
   resources :employees
   get 'pages', to: 'pages#index'
