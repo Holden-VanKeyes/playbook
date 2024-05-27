@@ -1,8 +1,9 @@
 <%= pb_rails("body", props: {margin_left: 'xl', margin_right: 'xl'}) do%>
     <%= pb_rails("card", props: { padding: "none", border_none: true, margin_top: "sm" }) do %>
-<% @revenue_data.each do |data| %>
-<%pp 'HEY', data%>
-<%end%>
+<% date_arr = @revenue_data.map{|data| data[:date]}%>
+<% revenue_arr = @revenue_data.map{|data| data[:amount]}.sort%>
+
+
 
         <%= pb_rails("flex", props: {vertical: "center", spacing: "between"}) do %>
             <%= pb_rails("title", props: { text: "Key Performance Indicator", tag: "h4", size: 4, padding: "sm" }) %> 
@@ -25,12 +26,12 @@
             <%= pb_rails("layout/body", props: {margin_top: 'xl'}) do %> 
                 <% data2 = [{
                     name: 'Installation',
-                    data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]
+                    data: revenue_arr
                 }, ] %>
                 <%= pb_rails("line_graph", props: { 
                     gradient: false, 
                     chart_data: data2, 
-                    x_axis_categories:["5/1", '5/15','6/1','6/15','7/1','7/15','8/1','8/15','9/1','9/15','10/1','10/15', '11/1', '11/15'], 
+                    x_axis_categories: date_arr, 
                     point_start: 0,  }  ) %>
             <% end %>
         <% end %>
