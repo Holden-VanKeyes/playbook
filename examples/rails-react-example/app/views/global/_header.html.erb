@@ -1,54 +1,57 @@
 <% employee_id = Employee.all.first[:id]%>
 <% employee_tix = Ticket.get_employee_tix(employee_id) %>
-<%= pb_rails("flex", props: {justify: 'between', padding_top: "sm", padding_bottom: "sm", margin_left: 'xl', margin_right: 'xl', align: "center"  }) do %>
-<%# <div class='header'> %>
-    <%= pb_rails("flex", props: {align: "center"}) do %>
-         <%= pb_rails("icon", props: { icon: "hamburger", size: "lg" }) %>
-            <%= pb_rails("flex", props: {orientation: 'column', margin_left: 'xs', padding: 'none'}) do %>
-                <%= link_to root_path do%>
-                    <%= pb_rails("caption", props: { text: "Veggie Burger", size: 'lg', line_height: "tightest" }) %>
-                    <%= pb_rails("caption", props: { text: "International", size: 'xs', line_height: "tightest" }) %>
-                <% end %>
-            <% end %>
-    <% end %>
 
-    <%= pb_rails("flex", props: { }) do %>
-            <div id="performance-data">
-                <%= link_to employee_path(employee_id), remote: true do%>
-                    <div class='notifications'>
-                        <%= pb_rails("flex/flex_item", props: {margin_right: 'xl'} ) do %>
-                            <%= pb_rails("icon_value", props: {
-                                icon: "bell",
-                                text: employee_tix.size,
-                                id: "ticket_count"
-                                }) %>
+<%= pb_rails("flex",  props: {id: 'header-content', justify: 'between', padding_top: "sm", padding_bottom: "sm", margin_left: 'xl', margin_right: 'xl', align: "center"  }) do %>
+           
+            <%= pb_rails("flex", props: {align: "center"}) do %>
+                <%= pb_rails("icon", props: { icon: "hamburger", size: "lg" }) %>
+                    <%= pb_rails("flex", props: {orientation: 'column', margin_left: 'xs', padding: 'none'}) do %>
+                        <%= link_to root_path do%>
+                      
+                            <%= pb_rails("caption", props: { id:'logo-mobile', text: "Veggie Burger", size: 'lg', line_height: "tightest" }) %>
+                    
+                            <%= pb_rails("caption", props: { text: "International", size: 'xs', line_height: "tightest" }) %>
                         <% end %>
-                    </div>
-                <%end%>
-            </div>
-            <%= pb_rails("flex/flex_item", props: {margin_right: 'xl'}) do %>
-                <%= pb_rails("icon_value", props: {
-                icon: "inbox",
-                text: "2"
-                }) %>
+                    <% end %>
             <% end %>
+         
+    <%= pb_rails("flex", props: {id: 'topbar-icons', align: 'center' }) do %>
+        
+            <%= link_to employee_path(employee_id) do%>
+                <div class='notifications'>
+                    <%= pb_rails("flex/flex_item", props: {margin_right: 'xl'} ) do %>
+                        <%= pb_rails("icon_value", props: {
+                            icon: "bell",
+                            text: employee_tix.size,
+                            id: "ticket_count"
+                            }) %>
+                    <% end %>
+                </div>
+            <%end%>
+   
 
-            <%= pb_rails("flex", props: {margin_right: 'lg', align: "center"}) do %>
-                <%employee = Employee.all.first if Employee.any? %>
+        <%= pb_rails("flex/flex_item", props: {margin_right: 'xl'}) do %>
+            <%= pb_rails("icon_value", props: {
+            icon: "inbox",
+            text: "2"
+            }) %>
+        <% end %>
+
+        <%= pb_rails("flex", props: { align: "center"}) do %>
+            <%employee = Employee.all.first if Employee.any? %>
+                <%= pb_rails("flex/flex_item", props: {}) do %>
                     <%= pb_rails("body", props: {margin_right: 'xs'}) do %>
                         <small><b><%= employee ? employee[:name] : 'Temp User' %></b></small>
                     <% end %>
+                <% end %>
 
-                    <%= pb_rails("avatar", props: {size: "xxs", image_url: employee ? 
-                    employee[:avatar_url] : '' }) %>
-                    <%= pb_rails("icon", props: { icon: "chevron-down", size: "xs" }) %>
-
-           <% end %>
-   <% end %>
-
-   
-<%# </div> %>
+                <%= pb_rails("avatar", props: {size: "xs", image_url: employee ? employee[:avatar_url] : '' }) %>
+                <%= pb_rails("icon", props: { icon: "chevron-down", size: "xs" }) %>
+            <% end %>
+    <% end %>
 <% end %>
+
+
 <%= pb_rails("section_separator") %>
 
 <%= pb_rails("tooltip", props: {

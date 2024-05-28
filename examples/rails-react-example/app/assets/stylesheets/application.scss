@@ -42,15 +42,42 @@ $extrabold:     700;
         justify-content: center;
     }
 }
+#header-content {
+    @media (max-width: 600px) {
+        display: flex;
+        flex-direction: column;
+        margin: $space_sm;
+    }
+}
+#topbar-icons {
+    margin-right: $space_xs;
+    @media (max-width: 600px) {
+        margin-top: $space_md;
+    }
+}
+#logo-mobile{
+    @media (max-width: 600px) {
+        font-size: $text_large
+    }
+}
+.icon-background {
+    color: #c0ffc0;
+}
+
 .navbar {
     display: flex;
     justify-content: space-between;
     margin-left: $space_xl;
 
     @media (max-width: 600px) {
-        flex-direction: column;
-        margin-left: 16px;
+        margin-left: 0;
+        justify-content: space-around;
+        flex-wrap: wrap;
     }
+}
+
+#ticket-icons{
+    opacity: 0.3
 }
 
 .escalations-container {
@@ -60,6 +87,7 @@ $extrabold:     700;
 
     @media (max-width: 600px) {
         justify-content: center;
+        display: block;
     }
 }
 
@@ -121,6 +149,7 @@ $extrabold:     700;
 .employee-page {
     margin-left: $space_xl;
     margin-right: $space_xl;
+    margin-top: $space_md;
     @media (max-width: 600px) {
         margin-left: $space_md
     }
@@ -129,3 +158,4 @@ $extrabold:     700;
 .notifications {
     cursor: pointer;
 }
+
