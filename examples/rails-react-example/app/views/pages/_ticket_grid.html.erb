@@ -5,18 +5,23 @@
         <% ticket_data.each_slice(1) do |tickets| %>
             <%= pb_rails('card', props: {border_radius: 'none',  padding: 'md', align_items: 'center', justify_content: 'center' }) do %>
                 <% tickets.each do |ticket| %>
-                 
-                    <%= pb_rails('flex', props: {}) do %>
-                        <span class="fa-stack fa-2x">
-                            <i id='ticket-icons', class="fa fa-circle fa-stack-2x tester" style="color:<%= ticket[:variant] %>  "></i>
-                            <i class="fa <%= ticket[:icon] %> fa-stack-1x" style="color:<%= ticket[:variant] %>  "></i>
-                        </span>
-                            
-                        <%= pb_rails('flex', props: {align: 'baseline', orientation: 'column'}) do %>
-                            <%= pb_rails("title", props: { text: ticket[:value], tag: "h2", size: 2 }) %>
-                            <%= pb_rails("caption", props: {text: ticket[:text]}) %>
+                       
+                        <%= pb_rails('flex', props: {id: 'mobile-tix'}) do %>
+                            <%= pb_rails('flex/flex_item', props: {shrink: true}) do %>
+                            <span class="fa-stack fa-2x">
+                                <i id='ticket-icons', class="fa fa-circle fa-stack-2x tester" style="color:<%= ticket[:variant] %>  "></i>
+                                <i class="fa <%= ticket[:icon] %> fa-stack-1x" style="color:<%= ticket[:variant] %>  "></i>
+                            </span>
+                            <%end%>
+                                
+                            <%= pb_rails('flex', props: {align: 'baseline', orientation: 'column'}) do %>
+                                <%= pb_rails('flex/flex_item', props: {shrink: true}) do %>
+                                    <%= pb_rails("title", props: { text: ticket[:value], tag: "h2", size: 2 }) %>
+                                    <%= pb_rails("caption", props: {text: ticket[:text]}) %>
+                                <%end%>
+                            <%end%>
                         <%end%>
-                    <%end%>
+                     
                 <% end %>
             <% end %>
         <% end %>

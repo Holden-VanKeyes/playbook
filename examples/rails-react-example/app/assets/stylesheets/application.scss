@@ -79,6 +79,13 @@ $extrabold:     700;
 #ticket-icons{
     opacity: 0.3
 }
+#mobile-tix{
+    @media (max-width: 600px) {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}
+       
 
 .escalations-container {
     display: flex;
