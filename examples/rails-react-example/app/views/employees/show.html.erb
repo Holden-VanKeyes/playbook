@@ -1,40 +1,78 @@
-<%emp_tix = Ticket.get_employee_tix(params[:id].to_i)%>
+<%emp_tix = Ticket.get_employee_tix(params[:id])%>
+<%sun_times = Employee.get_sunset(params[:id])%>
+<%day_completed_percentage = sun_times[:percentage_passed]%>
+
 <%= render 'global/header' %>
 
-<% if emp_tix.size > 0 %>
-    <%= pb_rails("flex", props: { padding: "sm", wrap: true, margin: 'xl' }) do %>
-        <% emp_tix.each do |tix|%>
-    
-            <%highlight_color = @card_list.find{|card| card[:title] == tix[:category].upcase}%>
-     
-      
-            <%= pb_rails("flex/flex_item", props:  {fixed_size: "250px",  margin: 'sm'}) do %>
-                <%= pb_rails("card", props: { padding: "none", shadow: "deeper", header: true, highlight: {position: "top", color: highlight_color[:tab_color]}}) do %>
-                    <%= pb_rails("card/card_header", props: { padding: "sm", header_color: "none"}) do %>
-                        <%= pb_rails("detail", props: { text: tix[:category] }) %>
-                    <% end %>
 
-                    <%= pb_rails("card/card_body", props: { padding: "sm" }) do %>
-                        <%= pb_rails("caption", props: { text: 'Error Type:', size: 'xs' })  %>
-                        <%= tix[:error_type]%>
-                    <%end%>
-                        <%= pb_rails("section_separator") do%>
-                         <%= pb_rails("online_status", props: { status: highlight_color[:tab_color] }) %>
-                         <%= pb_rails("online_status", props: { status: highlight_color[:tab_color] }) %>
-                         <%= pb_rails("online_status", props: { status: highlight_color[:tab_color] }) %>
+
+
+
+    <% if emp_tix.size > 0 %>
+        <div class='employee-page'>
+            <%= pb_rails("flex", props: {  wrap: true, justify: 'between' }) do %>
+                <% emp_tix.each do |tix|%>
+            
+                    <%highlight_color = @card_list.find{|card| card[:title] == tix[:category].upcase}%>
+            
+            
+                    <%= pb_rails("flex/flex_item", props:  {fixed_size: "250px",  margin: 'sm'}) do %>
+                        <%= pb_rails("card", props: { padding: "none", header: true, highlight: {position: "top", color: highlight_color[:tab_color]}}) do %>
+                            <%= pb_rails("card/card_header", props: { padding: "sm", header_color: "none"}) do %>
+                                <%= pb_rails("detail", props: { text: tix[:category] }) %>
+                            <% end %>
+
+                            <%= pb_rails("card/card_body", props: { padding: "sm" }) do %>
+                                <%= pb_rails("caption", props: { text: 'Error Type:', size: 'xs' })  %>
+                                <%= tix[:error_type]%>
+                            <%end%>
+                                <%= pb_rails("section_separator") do%>
+                                <%= pb_rails("online_status", props: { status: highlight_color[:tab_color] }) %>
+                                <%= pb_rails("online_status", props: { status: highlight_color[:tab_color] }) %>
+                                <%= pb_rails("online_status", props: { status: highlight_color[:tab_color] }) %>
+                                <%end%>
+                            <%= pb_rails("card/card_body", props: { padding: "sm" }) do %>
+                                <%= pb_rails("caption", props: { text: 'Description:', size: 'xs' })  %>
+                                <%= pb_rails('body', props: {truncate: "4"})  do%>
+                                <%= tix[:description]%>
+                                <% end %>
+                            <%end%>
+                            
+
                         <%end%>
-                    <%= pb_rails("card/card_body", props: { padding: "sm" }) do %>
-                        <%= pb_rails("caption", props: { text: 'Description:', size: 'xs' })  %>
-                        <%= tix[:description]%>
                     <%end%>
-                       
-
                 <%end%>
             <%end%>
-        <%end%>
+        </div>
     <%end%>
-<%end%>
 
+<div class='employee-page'>
+    <%= pb_rails("flex", props: {   justify: 'center', align: 'center'}) do %>
+        <%= pb_rails("flex/flex_item", props: {overflow: "hidden", shrink: true }) do %>
+            <h4>Sunrise</h4>
+            <%= pb_rails("caption", props: {text: sun_times[:sunrise_str]}) %>
+        <%end%>
 
+        <%= pb_rails("flex/flex_item", props: {fixed_size: "275px", overflow: "hidden", shrink: true, margin_top: 'lg' }) do %>
+          <%= pb_rails("flex", props: {justify: 'center'}) do %>
+                <%= pb_rails("caption", props: {text: 'percent of day completed in:'}) %>
+            <% end %>
+            <%= pb_rails("gauge", props: {
+            id: "gauge-sizing2",
+            chart_data: [{ name: "Point 2", value: day_completed_percentage < 0 ? 100 : day_completed_percentage }],
+            colors: ['data-5'],
+            title: "#{Employee.find(params[:id]).city}" + ' ' + '-' + ' ' + "#{Employee.find(params[:id]).state}",
+            suffix: "%"
+            }) %>
+
+          
+        <% end %>
+
+    <%= pb_rails("flex/flex_item", props: {}) do %>
+            <h4>Sunset</h4>
+            <%= pb_rails("caption", props: {text: sun_times[:sunset_str]}) %>
+        <% end %>
+    <% end %>
+</div>
 
 

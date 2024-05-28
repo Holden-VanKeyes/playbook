@@ -25,15 +25,28 @@ errors = [
   'Need technical feedback'
 ]
 
-def randomize(string)
-  selection = string == 'category' ? categories.sample : errors.sample
-  selection.type
-end
+location = [
+  ['Austin', 'Texas'],
+  ['Santa Cruz', 'California'],
+  ['Osaka', 'Japan'],
+  ['Porto', 'Portugal'],
+  ['Philadelphia', 'Pennsylvania'],
+  ['Berlin', 'Germany'],
+  ['Brisbane', 'Australia'],
+  ['Valparaiso', 'Chile'],
+  ['Toronto', 'Canada'],
+  ['Oaxaca', 'Mexico']
+
+]
 
 puts 'seeding Employees...'
+location_counter = 0
 10.times do
-  Employee.create(name: Faker::Name.unique.name, avatar_url: "https://api.dicebear.com/8.x/personas/svg?seed=#{Faker::Name.unique.name}")
+  Employee.create(name: Faker::Name.unique.name,
+                  avatar_url: "https://api.dicebear.com/8.x/personas/svg?seed=#{Faker::Name.unique.name}", city: location[location_counter][0], state: location[location_counter][1])
+  location_counter += 1
 end
+
 employee_ids = Employee.pluck(:id)
 
 puts 'seeding Tickets...'

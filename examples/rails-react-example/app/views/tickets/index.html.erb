@@ -1,13 +1,14 @@
 
 <%= render 'global/header'  %>
 
-<ul>
-  <% @tickets.each do |ticket| %>
-
-    <li><%= ticket.category     %></li>
-    <li><%=ticket.description %> </li>
-    <li><%= ticket.employee_id%> </li>
-    <li><%=  ticket.error_type%> </li>
-  <% end %>
-</ul>
+<%= pb_rails("flex", props: {padding: 'xl'}) do%>
+  <ul>
+    <% @tickets.each do |ticket| %>
+      <li><%= ticket.category %> </li>
+      <li><%= ticket.description %> </li>
+      <li><%= ticket.employee_id %> </li>
+      <li><%= ticket.error_type %> </li>
+    <% end %>
+  </ul>
+<% end %>
 

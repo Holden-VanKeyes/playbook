@@ -1,9 +1,9 @@
 
 <div class='right-container'>
-<%= pb_rails('card', props: { border_none: true, shadow: 'deeper', padding:'none',  border_radius: 'none'}) do %>
+<%= pb_rails('card', props: { border_none: true, padding:'none',  border_radius: 'none'}) do %>
     <div class='right-grid'>
         <% ticket_data.each_slice(1) do |tickets| %>
-            <%= pb_rails('card', props: { border_radius: 'none',  padding: 'md', align_items: 'center', justify_content: 'center' }) do %>
+            <%= pb_rails('card', props: {border_radius: 'none',  padding: 'md', align_items: 'center', justify_content: 'center' }) do %>
                 <% tickets.each do |ticket| %>
                     <%= pb_rails('icon_stat_value', props: ticket ) %>
                 <% end %>

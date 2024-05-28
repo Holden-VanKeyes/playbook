@@ -13,17 +13,19 @@
     <% end %>
 
     <%= pb_rails("flex", props: { }) do %>
-            <%= link_to employee_path(employee_id) do%>
-                <div class='notifications'>
-                    <%= pb_rails("flex/flex_item", props: {margin_right: 'xl'} ) do %>
-                        <%= pb_rails("icon_value", props: {
-                            icon: "bell",
-                            text: employee_tix.size,
-                            id: "ticket_count"
-                            }) %>
-                    <% end %>
-                </div>
-            <%end%>
+            <div id="performance-data">
+                <%= link_to employee_path(employee_id), remote: true do%>
+                    <div class='notifications'>
+                        <%= pb_rails("flex/flex_item", props: {margin_right: 'xl'} ) do %>
+                            <%= pb_rails("icon_value", props: {
+                                icon: "bell",
+                                text: employee_tix.size,
+                                id: "ticket_count"
+                                }) %>
+                        <% end %>
+                    </div>
+                <%end%>
+            </div>
             <%= pb_rails("flex/flex_item", props: {margin_right: 'xl'}) do %>
                 <%= pb_rails("icon_value", props: {
                 icon: "inbox",
