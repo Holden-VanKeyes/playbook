@@ -10,7 +10,7 @@
 
     <% if emp_tix.size > 0 %>
         <div class='employee-page'>
-            <%= pb_rails("flex", props: {  wrap: true, justify: 'between' }) do %>
+            <%= pb_rails("flex", props: {  id: 'cards', wrap: true, justify: 'between' }) do %>
                 <% emp_tix.each do |tix|%>
             
                     <%highlight_color = @card_list.find{|card| card[:title] == tix[:category].upcase}%>
@@ -47,7 +47,7 @@
     <%end%>
 
 <div class='employee-page'>
-    <%= pb_rails("flex", props: {   justify: 'center', align: 'center'}) do %>
+    <%= pb_rails("flex", props: { id: 'employee-lower',  justify: 'center', align: 'center'}) do %>
         <%= pb_rails("flex/flex_item", props: {overflow: "hidden", shrink: true }) do %>
             <h4>Sunrise</h4>
             <%= pb_rails("caption", props: {text: sun_times[:sunrise_str]}) %>
@@ -68,9 +68,9 @@
           
         <% end %>
 
-    <%= pb_rails("flex/flex_item", props: {}) do %>
-            <h4>Sunset</h4>
-            <%= pb_rails("caption", props: {text: sun_times[:sunset_str]}) %>
+        <%= pb_rails("flex/flex_item", props: {}) do %>
+                <h4>Sunset</h4>
+                <%= pb_rails("caption", props: {text: sun_times[:sunset_str]}) %>
         <% end %>
     <% end %>
 </div>

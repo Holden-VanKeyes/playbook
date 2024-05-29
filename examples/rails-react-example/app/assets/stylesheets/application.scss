@@ -57,7 +57,7 @@ $extrabold:     700;
 }
 #logo-mobile{
     @media (max-width: 600px) {
-        font-size: $text_large
+        font-size: $text_larger
     }
 }
 .icon-background {
@@ -158,7 +158,21 @@ $extrabold:     700;
     margin-right: $space_xl;
     margin-top: $space_md;
     @media (max-width: 600px) {
-        margin-left: $space_md
+        display: flex;
+        justify-content: center;
+        #cards{
+            justify-content: center;
+        }
+    }
+
+    #employee-lower{
+        @media (max-width: 600px) {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-bottom: $space_xl;
+            border-color: $bg_light;
+        }
     }
 }
 
